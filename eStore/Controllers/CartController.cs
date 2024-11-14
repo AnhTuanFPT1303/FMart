@@ -70,7 +70,7 @@ namespace eStore.Controllers
             {
                 if (productId == null)
                 {
-                    throw new Exception("Product is not existed!!");
+                    throw new Exception("Product is not existed!");
                 }
                 if (quantity == null)
                 {
@@ -81,7 +81,7 @@ namespace eStore.Controllers
 
                 if (product == null)
                 {
-                    throw new Exception("Product is not existed!!");
+                    throw new Exception("Product is not existed!");
                 }
 
                 Cart cart = HttpContext.Session.GetComplexData<Cart>("CART");
@@ -94,7 +94,7 @@ namespace eStore.Controllers
                 cart.AddToCart(productId.Value, quantity.Value);
 
                 HttpContext.Session.SetComplexData("CART", cart);
-                TempData["AddSuccess"] = "Add to Cart successfully!! Click <a href='/Cart'>here</a> to view your cart!";
+                TempData["AddSuccess"] = "Add to Cart successfully! Click <a href='/Cart'>here</a> to view your cart!";
                 return RedirectToAction("Details", "Product", new { id = productId });
 
             }
@@ -189,7 +189,7 @@ namespace eStore.Controllers
                         }
 
                         HttpContext.Session.SetComplexData("CART", null);
-                        ViewBag.Success = "Check out successfully!! Click <a href='/Product'>here</a> to continue shopping.";
+                        ViewBag.Success = "Check out successfully! Click <a href='/Product'>here</a> to continue shopping.";
                         return View();
                     } catch (Exception ex)
                     {
@@ -198,11 +198,11 @@ namespace eStore.Controllers
                     }
                 } else
                 {
-                    ViewBag.Error = "Your Cart is empty!!";
+                    ViewBag.Error = "Your Cart is empty!";
                 }
             } else 
             {
-                ViewBag.Error = "Your Cart is empty!!";
+                ViewBag.Error = "Your Cart is empty!";
             }
             return View();
         }

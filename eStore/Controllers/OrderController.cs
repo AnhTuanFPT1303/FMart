@@ -110,13 +110,13 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Order ID is not found!!!");
+                    throw new Exception("Order ID is not found!");
                 }
                 Order order = orderRepository.GetOrder(id.Value);
                 
                 if (order == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 order.OrderDetails = orderDetailRepository.GetOrderDetails(order.OrderId).ToList();
                 decimal orderTotal = orderDetailRepository.GetOrderTotal(order.OrderId);
@@ -136,12 +136,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Order ID is not existed!!");
+                    throw new Exception("Order ID is not existed!");
                 }
                 Order order = orderRepository.GetOrder(id.Value);
                 if (order == null)
                 {
-                    throw new Exception("Order ID is not existed!!");
+                    throw new Exception("Order ID is not existed!");
                 }
                 order.OrderDetails = orderDetailRepository.GetOrderDetails(order.OrderId).ToList();
                 decimal orderTotal = orderDetailRepository.GetOrderTotal(order.OrderId);
@@ -164,11 +164,11 @@ namespace eStore.Controllers
                 Order order = orderRepository.GetOrder(id);
                 if (order == null)
                 {
-                    throw new Exception("Order ID is not existed!!");
+                    throw new Exception("Order ID is not existed!");
                 }
                 orderDetailRepository.DeleteOrderDetails(id);
                 orderRepository.DeleteOrder(id);
-                TempData["Delete"] = "Delete Order with the ID <strong>" + id + "</strong> successfully!!";
+                TempData["Delete"] = "Delete Order with the ID <strong>" + id + "</strong> successfully!";
                 return RedirectToAction(nameof(Index));
             } catch (Exception ex)
             {

@@ -51,12 +51,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 Member member = memberRepository.GetMember(id.Value);
                 if (member == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 return View(member);
             } catch (Exception ex)
@@ -83,14 +83,14 @@ namespace eStore.Controllers
             {
                 if (!member.Password.Equals(confirm))
                 {
-                    throw new Exception("Confirm and Password are not matched!!!");
+                    throw new Exception("Confirm and Password are not matched!");
                 }
                 if (ModelState.IsValid)
                 {
                     memberRepository.AddMember(member);
                 }
                 Member newMember = memberRepository.GetMember(member.Email);
-                TempData["Create"] = "Create Member with the ID <strong>" + newMember.MemberId + "</strong> successfully!!";
+                TempData["Create"] = "Create Member with the ID <strong>" + newMember.MemberId + "</strong> successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -108,12 +108,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 Member member = memberRepository.GetMember(id.Value);
                 if (member == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 return View(member);
             }
@@ -134,16 +134,16 @@ namespace eStore.Controllers
             {
                 if (id != member.MemberId)
                 {
-                    throw new Exception("Member ID is not matched!! Please try again");
+                    throw new Exception("Member ID is not matched! Please try again");
                 }
                 if (ModelState.IsValid)
                 {
                     if (!member.Password.Equals(confirm))
                     {
-                        throw new Exception("Confirm and Password are not matched!!!");
+                        throw new Exception("Confirm and Password are not matched!");
                     }
                     memberRepository.UpdateMember(member);
-                    TempData["Update"] = "Update Member with the ID <strong>" + id + "</strong> successfully!!";
+                    TempData["Update"] = "Update Member with the ID <strong>" + id + "</strong> successfully!";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -162,12 +162,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 Member member = memberRepository.GetMember(id.Value);
                 if (member == null)
                 {
-                    throw new Exception("Member ID is not found!!!");
+                    throw new Exception("Member ID is not found!");
                 }
                 return View(member);
             }
@@ -199,7 +199,7 @@ namespace eStore.Controllers
                 }
                 orderRepository.DeleteByMember(id);
                 memberRepository.DeleteMember(id);
-                TempData["Delete"] = "Delete Member with the ID <strong>" + id + "</strong> successfully!!";
+                TempData["Delete"] = "Delete Member with the ID <strong>" + id + "</strong> successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -240,17 +240,17 @@ namespace eStore.Controllers
 
                 if (id != member.MemberId)
                 {
-                    throw new Exception("Member ID is not matched!! Please try again");
+                    throw new Exception("Member ID is not matched! Please try again");
                 }
                 if (ModelState.IsValid)
                 {
                     if (!member.Password.Equals(confirm))
                     {
-                        throw new Exception("Confirm and Password are not matched!!!");
+                        throw new Exception("Confirm and Password are not matched!");
                     }
 
                     memberRepository.UpdateMember(member);
-                    ViewBag.Success = "Update your Profile successfully!!";
+                    ViewBag.Success = "Update your Profile successfully!";
                 }
                 return View(member);
             }

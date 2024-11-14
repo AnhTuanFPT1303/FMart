@@ -25,14 +25,14 @@ namespace eStore.Controllers
             {
                 if (!member.Password.Equals(confirm))
                 {
-                    throw new Exception("Confirm and Password are not matched!!!");
+                    throw new Exception("Confirm and Password are not matched!");
                 }
                 if (ModelState.IsValid)
                 {
                     memberRepository.AddMember(member);
                 }
                 BusinessObject.Member newMember = memberRepository.GetMember(member.Email);
-                TempData["Create"] = "Create Member with the ID <strong>" + newMember.MemberId + "</strong> successfully!!";
+                TempData["Create"] = "Create Member with the ID <strong>" + newMember.MemberId + "</strong> successfully!";
                 return RedirectToAction("Index", "Login");
             }
             catch (Exception ex)

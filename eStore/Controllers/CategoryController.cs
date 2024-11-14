@@ -23,10 +23,10 @@ namespace eStore.Controllers
                 if (!string.IsNullOrEmpty(categoryName))
                 {
                     categoryRepository.AddCategory(categoryName);
-                    return Json("Create Category successfully!!");
+                    return Json("Create Category successfully!");
                 } else
                 {
-                    throw new Exception("The Category Name is empty!!");
+                    throw new Exception("The Category Name is empty!");
                 }
             } catch (Exception ex)
             {

@@ -26,7 +26,6 @@ namespace eStore.Controllers
         }
 
         [Authorize(Roles = "User, Admin")]
-        // GET: ProductController
         public async Task<IActionResult> Index(string search, decimal? from, decimal? to, int? page, int category = 0)
         {
             SalesManagementContext context = new SalesManagementContext();
@@ -103,19 +102,18 @@ namespace eStore.Controllers
         }
 
         [Authorize(Roles = "User, Admin")]
-        // GET: ProductController/Details/5
         public ActionResult Details(int? id)
         {
             try
             {
                 if (id == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 Product product = productRepository.GetProduct(id.Value);
                 if (product == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 return View(product);
             }
@@ -126,7 +124,6 @@ namespace eStore.Controllers
             }
         }
         [Authorize(Roles = "Admin")]
-        // GET: ProductController/Create
         public ActionResult Create()
         {
             try
@@ -143,7 +140,6 @@ namespace eStore.Controllers
             return View();
         }
 
-        // POST: ProductController/Create
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -164,7 +160,7 @@ namespace eStore.Controllers
                     productRepository.AddProduct(product);
                 }
                 Product newProduct = productRepository.GetProduct(product.ProductName);
-                TempData["Create"] = "Create Product with the ID <strong>" + newProduct.ProductId + "</strong> successfully!!";
+                TempData["Create"] = "Create Product with the ID <strong>" + newProduct.ProductId + "</strong> successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -174,7 +170,6 @@ namespace eStore.Controllers
             }
         }
 
-        // GET: ProductController/Edit/5
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
@@ -182,12 +177,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 Product product = productRepository.GetProduct(id.Value);
                 if (product == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
 
                 ICategoryRepository categoryRepository = new CategoryRepository();
@@ -204,7 +199,6 @@ namespace eStore.Controllers
             }
         }
 
-        // POST: ProductController/Edit/5
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -214,12 +208,12 @@ namespace eStore.Controllers
             {
                 if (id != product.ProductId)
                 {
-                    throw new Exception("Product ID is not matched!! Please try again");
+                    throw new Exception("Product ID is not matched! Please try again");
                 }
                 if (ModelState.IsValid)
                 {
                     productRepository.Update(product);
-                    TempData["Update"] = "Update Product with the ID <strong>" + id + "</strong> successfully!!";
+                    TempData["Update"] = "Update Product with the ID <strong>" + id + "</strong> successfully!";
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -230,7 +224,6 @@ namespace eStore.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
@@ -238,12 +231,12 @@ namespace eStore.Controllers
             {
                 if (id == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 Product product = productRepository.GetProduct(id.Value);
                 if (product == null)
                 {
-                    throw new Exception("Product ID is not found!!!");
+                    throw new Exception("Product ID is not found!");
                 }
                 return View(product);
             }
@@ -254,7 +247,6 @@ namespace eStore.Controllers
             }
         }
 
-        // POST: ProductController/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -265,7 +257,7 @@ namespace eStore.Controllers
                 IOrderDetailRepository orderDetailRepository = new OrderDetailRepository();
                 orderDetailRepository.DeleteByProduct(id);
                 productRepository.Delete(id);
-                TempData["Delete"] = "Delete Product with the ID <strong>" + id + "</strong> successfully!!";
+                TempData["Delete"] = "Delete Product with the ID <strong>" + id + "</strong> successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

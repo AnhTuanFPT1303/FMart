@@ -12,6 +12,7 @@ namespace eStore.CustomHandler
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RolesAuthorizationRequirement requirement)
         {
+            // kiem tra role
             if (context.User == null || !context.User.Identity.IsAuthenticated)
             {
                 context.Fail();

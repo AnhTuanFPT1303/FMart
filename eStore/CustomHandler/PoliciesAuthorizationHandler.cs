@@ -10,6 +10,7 @@ namespace eStore.CustomHandler
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CustomUserRequireClaim requirement)
         {
+            // kiem tra dieu kien
             if (context.User == null || !context.User.Identity.IsAuthenticated)
             {
                 context.Fail();

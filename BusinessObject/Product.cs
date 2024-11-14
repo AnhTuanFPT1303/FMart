@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -36,6 +38,11 @@ namespace BusinessObject
         [Required]
         [Display(Name = "Units In Stock")]
         public int UnitsInStock { get; set; }
+        [Display(Name = "Image")]
+        public string Image { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

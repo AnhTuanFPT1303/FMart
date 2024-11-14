@@ -147,12 +147,20 @@ namespace eStore.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public async Task<IActionResult> Create(Product product)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+                    if (product.ImageFile != null && product.ImageFile.Length > 0)
+                    {
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await product.ImageFile.CopyToAsync(memoryStream);
+                            product.Image = Convert.ToBase64String(memoryStream.ToArray());
+                        }
+                    }
                     productRepository.AddProduct(product);
                 }
                 Product newProduct = productRepository.GetProduct(product.ProductName);

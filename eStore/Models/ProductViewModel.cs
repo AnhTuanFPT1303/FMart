@@ -25,5 +25,7 @@ namespace eStore.Models
 
         [Display(Name = "Units In Stock")]
         public int UnitsInStock { get; set; }
+        [Display(Name = "Image")]
+        public string Image { get; set; }
     }
 }
